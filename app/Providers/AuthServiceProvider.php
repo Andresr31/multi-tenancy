@@ -24,7 +24,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
+         if (app(\Hyn\Tenancy\Environment::class)->hostname()) {
+            auth()->getProvider()->setModel(\App\Models\Tenant\User::class);
+        }
     }
 }

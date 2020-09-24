@@ -2,13 +2,13 @@
 
 namespace App\Models\Tenant;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UsesTenantConnection;
 
     /**
      * The attributes that are mass assignable.
