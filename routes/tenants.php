@@ -7,8 +7,17 @@ Route::middleware(['web'])
     ->namespace('App\Http\Controllers')
     ->as('tenant.')
     ->group(function () {
-        Route::get('/home', 'HomeController@index')->name('home');
-        Route::get('/products', function () {
-           dd(\App\Models\Tenant\Product::all());
+
+        Route::get('/', function () {
+            return view('tenants.welcome');
         });
+
+        Route::get('/home', function () {
+            return view('tenants.home');
+        })->name('home');
+
+        Route::get('/products', function () {
+            $products = \App\Models\Tenant\Product::all();
+            return view('tenants.products',['products'=>$products]);
+        })->name('products');
     });
